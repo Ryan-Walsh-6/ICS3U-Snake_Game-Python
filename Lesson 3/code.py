@@ -19,12 +19,14 @@ def game_scene():
    background = stage.Grid(image_bank_bankground, 10,8)
    
    # a sprite that will be updated every frame
-   snake = stage.Sprite(image_bank_sprites, 11, 75, 66)
+   snakes = []
+   a_single_snake = stage.Sprite(image_bank_sprites, 11, 75, 66)
+   snakes.append(a_single_snake)
     # create a stage for the background to show up on
    #   and set the frame rate for 60fps
    game = stage.Stage(ugame.display, 60)
    # set layers of all sprites, items show up in order
-   game.layers = [snake] + [background]
+   game.layers = snakes + [background]
    # render all sprites
    #   most likely you will only render the background once per game scene
    game.render_block()
@@ -36,7 +38,7 @@ def game_scene():
        # update game logic
        
        # redraw Sprite
-       game.render_sprites([snake])
+       game.render_sprites(snakes)
        game.tick() # wait until refresh rate finishes
 
 if __name__ == "__main__":
